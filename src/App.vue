@@ -61,17 +61,25 @@ export default {
           title: 'fields',
           active: true,
           childs: [
-          ]
-        },
-        {
-          title: 'Special fields',
-          childs: [
+            { title: 'Checkbox', router: 'Checkbox' },
+            { title: 'Radio group', router: 'RadioGroup' },
+            { title: 'Switch', router: 'Switch' },
+            { title: 'Range slider', router: 'RangeSlider' },
+            { title: 'Slider', router: 'Slider' },
+            { title: 'Select', router: 'Select' },
+            { title: 'Textarea', router: 'TextArea' },
+            { title: 'TextField', router: 'TextField' }
+            // { title: 'Collection', router: 'Collection' },
+            // { title: 'CollectionGroup', router: 'CollectionGroup' },
+            // { title: 'Optional', router: 'Optional' },
+            // { title: 'Optional group', router: 'OptionalGroup' }
           ]
         },
         {
           title: 'Example',
           childs: [
-            { title: 'Basic example', router: 'BasicExample' }
+            { title: 'Basic example', router: 'BasicExample' },
+            { title: 'Card example', router: 'CardExample' }
           ]
         }
       ],
