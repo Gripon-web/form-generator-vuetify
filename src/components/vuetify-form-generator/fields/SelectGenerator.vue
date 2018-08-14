@@ -1,0 +1,123 @@
+<template>
+  <v-select
+    :activator="field.activator"
+    :allow-overflow="field.allowOverflow"
+    :append-icon="field.appendIcon"
+    :append-icon-cb="field.appendIconCb"
+    :append-outer-icon="field.appendOuterIcon"
+    :append-outer-icon-cb="field.appendOuterIconCb"
+    :attach="field.attach"
+    :auto="field.auto"
+    :autofocus="field.autofocus"
+    :background-color="field.backgroundColor"
+    :box="field.box"
+    :browser-autocomplete="field.browserAutocomplete"
+    :cache-items="field.cacheItems"
+    :chips="field.chips"
+    :clear-icon="field.clearIcon"
+    :clear-icon-cb="field.clearIconCb"
+    :clearable="field.clearable"
+    :close-on-click="field.closeOnClick"
+    :color="field.color"
+    :content-class="field.contentClass"
+    :counter="field.counter"
+    :dark="field.dark"
+    :deletable-chips="field.deletableChips"
+    :dense="field.dense"
+    :disabled="field.disabled"
+    :dont-fill-mask-blanks="field.dontFillMaskBlanks"
+    :error="field.error"
+    :error-count="field.errorCount"
+    :error-messages="error"
+    :filter="field.filter"
+    :flat="field.flat"
+    :full-width="field.fullWidth"
+    :height="field.height"
+    :hide-details="field.hideDetails"
+    :hide-selected="field.hideSelected"
+    :hint="field.hint"
+    :input-activator="field.inputActivator"
+    :item-avatar="field.itemAvatar"
+    :item-disabled="field.itemDisabled"
+    :item-text="itemText"
+    :item-value="itemValue"
+    :items="field.items"
+    :label="field.label"
+    :light="field.light"
+    :loading="field.loading"
+    :mask="field.mask"
+    :max-height="field.maxHeight"
+    :max-width="field.maxWidth"
+    :messages="field.messages"
+    :min-width="field.minWidth"
+    :multiple="field.multiple"
+    :no-data-text="field.noDataText"
+    :nudge-bottom="field.nudgeBottom"
+    :nudge-left="field.nudgeLeft"
+    :nudge-right="field.nudgeRight"
+    :nudge-top="field.nudgeTop"
+    :nudge-width="field.nudgeWidth"
+    :offset-overflow="field.offsetOverflow"
+    :offset-x="field.offsetX"
+    :offset-y="field.offsetY"
+    :open-on-clear="field.openOnClear"
+    :open-on-click="field.openOnClick"
+    :open-on-hover="field.openOnHover"
+    :origin="field.origin"
+    :outline="field.outline"
+    :persistent-hint="field.persistentHint"
+    :placeholder="field.placeholder"
+    :position-x="field.positionX"
+    :position-y="field.positionY"
+    :prefix="field.prefix"
+    :prepend-icon="field.prependIcon"
+    :prepend-icon-cb="field.prependIconCb"
+    :prepend-inner-icon="field.prependInnerIcon"
+    :prepend-inner-icon-cb="field.prependInnerIconCb"
+    :readonly="field.readonly"
+    :return-masked-value="field.returnMaskedValue"
+    :return-object="field.returnObject"
+    :reverse="field.reverse"
+    :rules="field.rules"
+    :search-input="field.searchInput"
+    :single-line="field.singleLine"
+    :small-chips="field.smallChips"
+    :solo="field.solo"
+    :solo-inverted="field.soloInverted"
+    :success="field.success"
+    :success-messages="field.successMessages"
+    :suffix="field.suffix"
+    :transition="field.transition"
+    :type="field.type"
+    :validate-on-blur="field.validateOnBlur"
+    :value="field.value"
+    :value-comparator="field.valueComparator"
+    :z-index="field.zIndex"
+
+    v-model="model[name]"
+    v-validate="field.validate"
+    :data-vv-name="name"
+    :data-vv-as="veeAs"
+    @input="$validator.validate(name, model[name])"
+    @change="$validator.validate(name, model[name])"
+    @blur="$validator.validate(name, model[name])"
+  />
+</template>
+
+<script>
+import { fieldsMixin } from '../mixins'
+export default {
+  name: 'SelectGenerator',
+  mixins: [fieldsMixin],
+  props: {
+    itemValue: {
+      type: String,
+      default: 'id'
+    },
+    itemText: {
+      type: String,
+      default: 'value'
+    }
+  }
+}
+</script>
