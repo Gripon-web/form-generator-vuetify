@@ -68,11 +68,13 @@ export default {
             { title: 'Slider', router: 'Slider' },
             { title: 'Select', router: 'Select' },
             { title: 'Textarea', router: 'TextArea' },
-            { title: 'TextField', router: 'TextField' }
-            // { title: 'Collection', router: 'Collection' },
-            // { title: 'CollectionGroup', router: 'CollectionGroup' },
-            // { title: 'Optional', router: 'Optional' },
-            // { title: 'Optional group', router: 'OptionalGroup' }
+            { title: 'TextField', router: 'TextField' },
+            { title: 'Collection', router: 'Collection' },
+            { title: 'CollectionGroup', router: 'CollectionGroup' },
+            { title: 'Optional', router: 'Optional' },
+            { title: 'Optional group', router: 'OptionalGroup' },
+            { title: 'Date picker', router: 'DatePicker' },
+            { title: 'Time picker', router: 'TimePicker' }
           ]
         },
         {

@@ -8,7 +8,7 @@
     :disabled="field.disabled"
     :error="field.error"
     :error-count="field.errorCount"
-    :error-messages="error"
+    :error-messages="switchError"
     :false-value="field.falseValue"
     :height="field.height"
     :hide-details="field.hideDetails"
@@ -34,20 +34,50 @@
     :value="field.value"
     :value-comparator="field.valueComparator"
 
-    v-model="model[name]"
+    v-model="vModel"
     v-validate="field.validate"
-    :data-vv-name="name"
-    :data-vv-as="veeAs"
-    @input="$validator.validate(name, model[name])"
-    @change="$validator.validate(name, model[name])"
-    @blur="$validator.validate(name, model[name])"
+    :data-vv-name="validatorIndex"
+    :data-vv-as="messageFieldName"
+    @input="$validator.validate(validatorIndex, model[name])"
+    @change="$validator.validate(validatorIndex, model[name])"
+    @blur="$validator.validate(validatorIndex, model[name])"
   />
 </template>
 
 <script>
-import { fieldsMixin } from '../../mixins'
+import { fieldsMixin, propsMixin } from '../../mixins'
 export default {
   name: 'SwitchGenerator',
-  mixins: [fieldsMixin]
+  mixins: [fieldsMixin, propsMixin],
+  props: {
+    model: Object | Boolean,
+    isActivator: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    switchError () {
+      if (this.isActivator) {
+        return []
+      }
+      return this.error
+    },
+    vModel: {
+      get () {
+        if (this.isActivator) {
+          return this.field['state']
+        }
+        return this.model[this.name]
+      },
+      set (val) {
+        if (this.isActivator) {
+          this.field['state'] = val
+        } else {
+          this.model[this.name] = val
+        }
+      }
+    }
+  }
 }
 </script>

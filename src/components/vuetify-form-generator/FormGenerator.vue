@@ -14,12 +14,8 @@
 </template>
 
 <script>
-import FieldGenerator from './FieldGenerator'
 export default {
   name: 'FormGenerator',
-  components: {
-    FieldGenerator
-  },
   $_veeValidate: {
     validator: 'new'
   },
@@ -32,7 +28,7 @@ export default {
       this.$validator.validateAll()
         .then((result) => {
           if (result) {
-            this.$emit('on-submit', this.form)
+            this.$emit('on-submit', this.model)
           }
         })
     },

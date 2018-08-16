@@ -71,6 +71,16 @@
       ></optional-group-generator>
       <!-- Specials Fields end -->
 
+      <date-picker-generator v-if="field.type === 'date-picker'"
+        :veeIndex="veeIndex"
+        :name="name" :model="model" :errors="errors" :field="field"
+      ></date-picker-generator>
+
+      <time-picker-generator v-if="field.type === 'time-picker'"
+        :veeIndex="veeIndex"
+        :name="name" :model="model" :errors="errors" :field="field"
+      ></time-picker-generator>
+
     </v-flex>
   </v-layout>
 </template>
@@ -88,7 +98,9 @@ import {
   CollectionGenerator,
   CollectionGroupGenerator,
   OptionalGenerator,
-  OptionalGroupGenerator
+  OptionalGroupGenerator,
+  DatePickerGenerator,
+  TimePickerGenerator
 } from './fields'
 export default {
   name: 'FieldGenerator',
@@ -106,7 +118,9 @@ export default {
     CollectionGenerator,
     CollectionGroupGenerator,
     OptionalGenerator,
-    OptionalGroupGenerator
+    OptionalGroupGenerator,
+    DatePickerGenerator,
+    TimePickerGenerator
   },
   props: {
     errors: Object,

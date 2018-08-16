@@ -56,18 +56,18 @@
 
     v-model="model[name]"
     v-validate="field.validate"
-    :data-vv-name="name"
-    :data-vv-as="veeAs"
-    @input="$validator.validate(name, model[name])"
-    @change="$validator.validate(name, model[name])"
-    @blur="$validator.validate(name, model[name])"
+    :data-vv-name="validatorIndex"
+    :data-vv-as="messageFieldName"
+    @input="$validator.validate(validatorIndex, model[name])"
+    @change="$validator.validate(validatorIndex, model[name])"
+    @blur="$validator.validate(validatorIndex, model[name])"
   />
 </template>
 
 <script>
-import { fieldsMixin } from '../mixins'
+import { fieldsMixin, propsMixin } from '../mixins'
 export default {
   name: 'TextAreaGenerator',
-  mixins: [fieldsMixin]
+  mixins: [fieldsMixin, propsMixin]
 }
 </script>

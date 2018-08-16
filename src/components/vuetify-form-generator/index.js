@@ -4,8 +4,12 @@ import FieldGenerator from './FieldGenerator'
 // models
 import { FormModel } from './models/form'
 
+import Vue from 'vue'
+Vue.component('field-generator', FieldGenerator, {
+  name: 'field-generator'
+})
+
 export {
-  FieldGenerator,
   FormGenerator,
   FormModel
 }
