@@ -2,10 +2,34 @@
   <v-form @keydown="model.errors.clear($event.target.name)">
     <v-container>
 
-      <field-generator :model="model" :schema="schema.fields" :errors="model.errors"/>
+      <!-- Basic builder start -->
+      <v-layout row v-if="formType=== 'basic'">
+        <v-flex v-bind="{ [`${schema.responsive ? schema.responsive : 'xs12' }`]: true }">
+          <field-generator :model="model" :schema="schema.fields" :errors="model.errors"/>
+          <slot name="extra-slot"></slot>
+        </v-flex>
+      </v-layout>
+      <!-- Basic builder end -->
+
+      <!-- Card builder start -->
+      <v-layout row wrap v-else-if="formType=== 'card'">
+        <v-flex v-bind="{ [`${card.responsive ? card.responsive : 'xs12'}`]: true }" v-for="(card, i) in schema.cards" :key="i">
+          <v-card :class="card.class" v-bind="{ [`${card.theme}`]: true }">
+            <v-card-title :class="card.title.class" v-if="card.title">
+              {{card.title.title}}
+            </v-card-title>
+            <v-card-text>
+              <slot :name="card.slot" v-if="card.slot"></slot>
+              <field-generator :model="model" :schema="card.fields" :errors="model.errors"/>
+              <slot name="extra-slot"></slot>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+      </v-layout>
+      <!-- Card builder end -->
 
       <v-flex v-bind="{ [`${'xs12'}`]: true }">
-        <v-btn @click="submit">submit</v-btn>
+        <v-btn @click="submit" :loading="loading">submit</v-btn>
         <v-btn v-if="schema.reset" @click="clear">clear</v-btn>
       </v-flex>
 
@@ -21,7 +45,16 @@ export default {
   },
   props: {
     model: Object,
-    schema: Object
+    schema: Object,
+    loading: Boolean
+  },
+  computed: {
+    formType () {
+      if (this.schema.type) {
+        return this.schema.type
+      }
+      return 'basic'
+    }
   },
   methods: {
     submit () {

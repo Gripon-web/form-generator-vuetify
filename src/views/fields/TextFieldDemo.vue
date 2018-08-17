@@ -22,7 +22,12 @@ export default {
       }),
       schema: {
         fields: {
-          example: {type: 'text-field', label: 'Example', validate: 'required', errorName: 'custom name error'}
+          example: {
+            type: 'text-field',
+            label: 'Example',
+            validate: 'required',
+            errorName: 'custom name error'
+          }
         },
         reset: true
       }
