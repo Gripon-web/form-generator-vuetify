@@ -61,20 +61,28 @@ export default {
           title: 'fields',
           active: true,
           childs: [
+            // Collection
+            { title: 'Collection', router: 'Collection' },
+            { title: 'CollectionGroup', router: 'CollectionGroup' },
+            // Optional
+            { title: 'Optional', router: 'Optional' },
+            { title: 'Optional group', router: 'OptionalGroup' },
+            // Picker
+            { title: 'Date picker', router: 'DatePicker' },
+            { title: 'Menu Date picker', router: 'MenuDatePicker' },
+            { title: 'Menu Time picker', router: 'MenuTimePicker' },
+            { title: 'Time picker', router: 'TimePicker' },
+            // Selection controls
             { title: 'Checkbox', router: 'Checkbox' },
             { title: 'Radio group', router: 'RadioGroup' },
             { title: 'Switch', router: 'Switch' },
+            // Slider
             { title: 'Range slider', router: 'RangeSlider' },
             { title: 'Slider', router: 'Slider' },
+            // Fields
             { title: 'Select', router: 'Select' },
             { title: 'Textarea', router: 'TextArea' },
-            { title: 'TextField', router: 'TextField' },
-            { title: 'Collection', router: 'Collection' },
-            { title: 'CollectionGroup', router: 'CollectionGroup' },
-            { title: 'Optional', router: 'Optional' },
-            { title: 'Optional group', router: 'OptionalGroup' },
-            { title: 'Date picker', router: 'DatePicker' },
-            { title: 'Time picker', router: 'TimePicker' }
+            { title: 'TextField', router: 'TextField' }
           ]
         },
         {

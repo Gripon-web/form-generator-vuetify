@@ -4,6 +4,52 @@
       v-for="(field, name) in schema" :key="name"
     >
 
+      <!-- Collection start -->
+      <collection-generator v-if="field.type === 'collection'"
+        :veeIndex="veeIndex"
+        :name="name" :model="model" :field="field" :errors="errors"
+      ></collection-generator>
+
+      <collection-group-generator v-if="field.type === 'collection-group'"
+        :veeIndex="veeIndex"
+        :name="name" :model="model" :field="field" :errors="errors"
+      ></collection-group-generator>
+      <!-- Collection end -->
+
+      <!-- Optional start -->
+      <optional-generator v-if="field.type === 'optional'"
+        :veeIndex="veeIndex"
+        :name="name" :model="model" :field="field" :errors="errors"
+      ></optional-generator>
+
+      <optional-group-generator v-if="field.type === 'optional-group'"
+        :veeIndex="veeIndex"
+        :name="name" :model="model" :errors="errors" :field="field"
+      ></optional-group-generator>
+      <!-- Optional end -->
+
+      <!-- Picker start -->
+      <date-picker-generator v-if="field.type === 'date-picker'"
+        :veeIndex="veeIndex"
+        :name="name" :model="model" :errors="errors" :field="field"
+      ></date-picker-generator>
+
+      <menu-date-picker-generator v-if="field.type === 'menu-date-picker'"
+        :veeIndex="veeIndex"
+        :name="name" :model="model" :errors="errors" :field="field"
+      ></menu-date-picker-generator>
+
+      <menu-time-picker-generator v-if="field.type === 'menu-time-picker'"
+        :veeIndex="veeIndex"
+        :name="name" :model="model" :errors="errors" :field="field"
+      ></menu-time-picker-generator>
+
+      <time-picker-generator v-if="field.type === 'time-picker'"
+        :veeIndex="veeIndex"
+        :name="name" :model="model" :errors="errors" :field="field"
+      ></time-picker-generator>
+      <!-- Picker end -->
+
       <!-- selection-controls start -->
       <checkbox-generator v-if="field.type === 'checkbox'"
         :veeIndex="veeIndex"
@@ -49,38 +95,6 @@
         :name="name" :model="model" :field="field" :errors="errors"
       ></text-field-generator>
 
-      <!-- Specials Fields start -->
-      <collection-generator v-if="field.type === 'collection'"
-        :veeIndex="veeIndex"
-        :name="name" :model="model" :field="field" :errors="errors"
-      ></collection-generator>
-
-      <collection-group-generator v-if="field.type === 'collection-group'"
-        :veeIndex="veeIndex"
-        :name="name" :model="model" :field="field" :errors="errors"
-      ></collection-group-generator>
-
-      <optional-generator v-if="field.type === 'optional'"
-        :veeIndex="veeIndex"
-        :name="name" :model="model" :field="field" :errors="errors"
-      ></optional-generator>
-
-      <optional-group-generator v-if="field.type === 'optional-group'"
-        :veeIndex="veeIndex"
-        :name="name" :model="model" :errors="errors" :field="field"
-      ></optional-group-generator>
-      <!-- Specials Fields end -->
-
-      <date-picker-generator v-if="field.type === 'date-picker'"
-        :veeIndex="veeIndex"
-        :name="name" :model="model" :errors="errors" :field="field"
-      ></date-picker-generator>
-
-      <time-picker-generator v-if="field.type === 'time-picker'"
-        :veeIndex="veeIndex"
-        :name="name" :model="model" :errors="errors" :field="field"
-      ></time-picker-generator>
-
     </v-flex>
   </v-layout>
 </template>
@@ -100,7 +114,9 @@ import {
   OptionalGenerator,
   OptionalGroupGenerator,
   DatePickerGenerator,
-  TimePickerGenerator
+  TimePickerGenerator,
+  MenuDatePickerGenerator,
+  MenuTimePickerGenerator
 } from './fields'
 export default {
   name: 'FieldGenerator',
@@ -120,7 +136,9 @@ export default {
     OptionalGenerator,
     OptionalGroupGenerator,
     DatePickerGenerator,
-    TimePickerGenerator
+    TimePickerGenerator,
+    MenuDatePickerGenerator,
+    MenuTimePickerGenerator
   },
   props: {
     errors: Object,

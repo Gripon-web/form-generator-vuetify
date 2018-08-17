@@ -62,6 +62,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 import { fieldsMixin, propsMixin } from '../mixins'
 export default {
   name: 'TextFieldGenerator',
@@ -71,6 +72,10 @@ export default {
     isController: {
       type: Boolean | String,
       default: false
+    },
+    isDatePicker: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -78,6 +83,9 @@ export default {
       get () {
         if (this.isController !== false) {
           return this.model[this.name][this.isController === 'start' ? 0 : 1]
+        } else if (this.isDatePicker && moment(this.model[this.name]).isValid()) {
+          moment().locale()
+          return moment(this.model[this.name]).format(this.field.format)
         }
         return this.model[this.name]
       },
