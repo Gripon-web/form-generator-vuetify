@@ -58,8 +58,14 @@ export default {
     return {
       drawers: [
         {
-          title: 'fields',
+          title: 'Getting Started',
           active: true,
+          childs: [
+            {title: 'installation', router: 'Installation'}
+          ]
+        },
+        {
+          title: 'fields',
           childs: [
             // Collection
             { title: 'Collection', router: 'Collection' },
@@ -80,6 +86,7 @@ export default {
             { title: 'Range slider', router: 'RangeSlider' },
             { title: 'Slider', router: 'Slider' },
             // Fields
+            { title: 'File upload', router: 'FileUpload' },
             { title: 'Select', router: 'Select' },
             { title: 'Textarea', router: 'TextArea' },
             { title: 'TextField', router: 'TextField' }

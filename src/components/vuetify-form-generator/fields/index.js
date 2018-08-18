@@ -1,3 +1,4 @@
+import FileUploadGenerator from './FileUploadGenerator'
 import SelectGenerator from './SelectGenerator'
 import TextAreaGenerator from './TextAreaGenerator'
 import TextFieldGenerator from './TextFieldGenerator'
@@ -21,6 +22,7 @@ import RangeSliderGenerator from './slider/RangeSliderGenerator'
 import SliderGenerator from './slider/SliderGenerator'
 
 export {
+  FileUploadGenerator,
   CollectionGenerator,
   CollectionGroupGenerator,
   OptionalGenerator,

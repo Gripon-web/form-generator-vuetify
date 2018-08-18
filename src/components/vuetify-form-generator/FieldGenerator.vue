@@ -79,6 +79,11 @@
       ></slider-generator>
       <!-- Slider end -->
 
+      <file-upload-generator v-if="field.type === 'file-upload'"
+        :veeIndex="veeIndex"
+        :name="name" :model="model" :field="field" :errors="errors"
+      ></file-upload-generator>
+
       <select-generator v-if="field.type === 'select'"
         :veeIndex="veeIndex"
         :name="name" :model="model" :field="field" :errors="errors"
@@ -101,6 +106,7 @@
 
 <script>
 import {
+  FileUploadGenerator,
   CheckboxGenerator,
   RadioGroupGenerator,
   SwitchGenerator,
@@ -122,19 +128,24 @@ export default {
   name: 'FieldGenerator',
   components: {
     // Fields
-    CheckboxGenerator,
-    RadioGroupGenerator,
-    SwitchGenerator,
-    RangeSliderGenerator,
-    SliderGenerator,
+    FileUploadGenerator,
     SelectGenerator,
     TextAreaGenerator,
     TextFieldGenerator,
-    // Specials fields
+    // Selection Controls
+    CheckboxGenerator,
+    RadioGroupGenerator,
+    SwitchGenerator,
+    // Slider
+    RangeSliderGenerator,
+    SliderGenerator,
+    // Collection
     CollectionGenerator,
     CollectionGroupGenerator,
+    // Optional
     OptionalGenerator,
     OptionalGroupGenerator,
+    // Picker
     DatePickerGenerator,
     TimePickerGenerator,
     MenuDatePickerGenerator,

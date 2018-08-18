@@ -65,6 +65,11 @@ export const fieldsRoutes = [
     component: () => import(/* fields slider */ '@/views/fields/slider/SliderDemo.vue')
   },
   {
+    path: '/file-upload',
+    name: 'FileUpload',
+    component: () => import(/* fields */ '@/views/fields/FileUploadDemo.vue')
+  },
+  {
     path: '/select',
     name: 'Select',
     component: () => import(/* fields */ '@/views/fields/SelectDemo.vue')
