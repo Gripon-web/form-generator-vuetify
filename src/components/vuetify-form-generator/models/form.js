@@ -75,27 +75,27 @@ export class FormModel {
     return this.submit('delete', url)
   }
 
-  setFormData (requestType) {
-    let formData = new FormData()
-    if (requestType === ('put' || 'patch')) {
-      formData.append('_method', requestType)
-    }
-    Object.keys(this.data())
-      .forEach(key => {
-        const dataKey = this.data()[key]
-        if (typeof dataKey === 'object') {
-          if (dataKey instanceof File) {
-            formData.append(key, dataKey)
-          } else {
-            const toString = JSON.stringify(dataKey)
-            formData.append(key, toString)
-          }
-        } else {
-          formData.append(key, this.data()[key])
-        }
-      })
-    return formData
-  }
+  // setFormData (requestType) {
+  //   let formData = new FormData()
+  //   if (requestType === ('put' || 'patch')) {
+  //     formData.append('_method', requestType)
+  //   }
+  //   Object.keys(this.data())
+  //     .forEach(key => {
+  //       const dataKey = this.data()[key]
+  //       if (typeof dataKey === 'object') {
+  //         if (dataKey instanceof File) {
+  //           formData.append(key, dataKey)
+  //         } else {
+  //           const toString = JSON.stringify(dataKey)
+  //           formData.append(key, toString)
+  //         }
+  //       } else {
+  //         formData.append(key, this.data()[key])
+  //       }
+  //     })
+  //   return formData
+  // }
 
   /**
    * Submit the form.
@@ -104,26 +104,28 @@ export class FormModel {
    * @param {string} url
    */
   submit (requestType, url, useFormData) {
-    let formData = this.data()
-    if (useFormData) {
-      formData = this.setFormData(requestType)
-      requestType = 'post'
-    }
-    console.log(formData)
-    return new Promise((resolve, reject) => {
-      resolve(console.log(formData))
-      //   Api[requestType](url, formData)
-      //     .then(response => {
-      //       this.onSuccess(response.data)
+    return this.data()
 
-      //       resolve(response.data)
-      //     })
-      //     .catch(error => {
-      //       this.onFail(error.response.data.invalid_fields)
+    // let formData = this.data()
+    // if (useFormData) {
+    //   formData = this.setFormData(requestType)
+    //   requestType = 'post'
+    // }
+    // console.log(formData)
+    // return new Promise((resolve, reject) => {
+    //   resolve(console.log(formData))
+    //     Api[requestType](url, formData)
+    //       .then(response => {
+    //         this.onSuccess(response.data)
 
-      //       reject(error.response.data)
-      //     })
-    })
+    //         resolve(response.data)
+    //       })
+    //       .catch(error => {
+    //         this.onFail(error.response.data.invalid_fields)
+
+    //         reject(error.response.data)
+    //       })
+    // })
   }
 
   /**

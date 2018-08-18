@@ -18,40 +18,94 @@ export default {
   data () {
     return {
       model: new FormModel({
-        fieldOne: '',
-        collection: {
-          collectionFieldOne: '',
-          collectionFieldTwo: '',
-          checkbox: null
-        }
-      }),
-      schema: {
+        username: 'user1',
+        email: 'user1@mail.com',
+        password: '123456',
+        confirmPassword: '123456',
+        firstName: 'Firstname',
+        lastName: 'Lastname',
+        birthdate: '1970-01-01',
+        addresses: [{
+          streetAddress: 'My street address',
+          state: 'My State',
+          city: 'My City'
+        }],
+        agree: true
+      })
+    }
+  },
+  computed: {
+    schema () {
+      return {
         type: 'card',
         cards: [
           {
             title: {
-              title: 'Card One',
+              title: 'Create account',
               class: 'primary--text'
             },
             fields: {
-              collection: {
-                type: 'collection',
-                title: 'Collection demo',
+              username: {
+                type: 'text-field',
+                responsive: 'xs6',
+                label: 'Username',
+                validate: 'required',
+                errorName: 'username'
+              },
+              email: {
+                type: 'text-field',
+                responsive: 'xs6',
+                label: 'Email',
+                validate: 'required|email',
+                errorName: 'email',
+                inputType: 'email'
+              },
+              password: {type: 'text-field',
+                label: 'Password',
+                responsive: 'xs6',
+                validate: 'required|min:6',
+                errorName: 'password',
+                inputType: 'password',
+                hint: 'minimum 6 characters',
+                persistentHint: true
+              },
+              confirmPassword: {type: 'text-field',
+                label: 'Confirm Password',
+                responsive: 'xs6',
+                validate: `required|min:6|confirmed:${this.model.password}`,
+                errorName: 'password',
+                inputType: 'password'
+              }
+            }
+          },
+          {
+            title: {
+              title: 'Personnal info',
+              class: 'primary--text'
+            },
+            fields: {
+              firstName: { type: 'text-field', label: 'First name', responsive: 'xs6', validate: 'required' },
+              lastName: { type: 'text-field', label: 'Last name', responsive: 'xs6', validate: 'required' },
+              birthdate: { type: 'menu-date-picker', label: 'Birthdate', responsive: 'xs6', format: 'DD MMMM YYYY', validate: 'required' },
+              addresses: {
+                type: 'collection-group',
+                title: 'Addresses',
+                titleFields: 'Address',
                 fields: {
-                  collectionFieldOne: {type: 'text-field', label: 'field One', validate: 'required'},
-                  collectionFieldTwo: {type: 'text-field', label: 'field Two', validate: 'required'}
+                  streetAddress: { type: 'text-field', label: 'Street adress', validate: 'required' },
+                  state: { type: 'text-field', label: 'State/Province/Region', validate: 'required' },
+                  city: { type: 'text-field', label: 'City', validate: 'required' }
                 }
               }
             }
           },
           {
             title: {
-              title: 'Card Two',
+              title: 'Last step',
               class: 'primary--text'
             },
             fields: {
-              fieldOne: {type: 'text-field', label: 'Example', validate: 'required', errorName: 'custom name error'},
-              checkbox: { type: 'checkbox', label: 'Do you agree ?', validate: 'required' }
+              agree: { type: 'checkbox', label: 'Do you agree ?', validate: 'required' }
             }
           }
         ],

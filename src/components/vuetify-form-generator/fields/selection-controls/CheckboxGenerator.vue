@@ -42,16 +42,16 @@
     v-validate="field.validate"
     :data-vv-name="validatorIndex"
     :data-vv-as="messageFieldName"
-    @input="$validator.validate(validatorIndex, model[name])"
-    @change="$validator.validate(validatorIndex, model[name])"
+    @input="updateValue($event)"
+    @change="updateValue($event)"
     @blur="$validator.validate(validatorIndex, model[name])"
   ></v-checkbox>
 </template>
 
 <script>
-import { fieldsMixin, propsMixin } from '../../mixins'
+import { fieldsMixin, propsMixin, selectionControlsMixin } from '../../mixins'
 export default {
   name: 'CheckboxGenerator',
-  mixins: [fieldsMixin, propsMixin]
+  mixins: [fieldsMixin, propsMixin, selectionControlsMixin]
 }
 </script>

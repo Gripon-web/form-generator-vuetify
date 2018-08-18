@@ -44,9 +44,6 @@
     :return-value.sync="model[name]"
     :close-on-content-click=false
   >
-    <!-- <v-text-field slot="activator"
-      :value="form[name] | moment(options.format)"
-    ></v-text-field> -->
 
     <text-field-generator slot="activator" :name="name" :model="model" :field="field" isDatePicker/>
 

@@ -1,6 +1,6 @@
 <template>
   <v-form @keydown="model.errors.clear($event.target.name)">
-    <v-container>
+    <v-container fluid grid-list-lg>
 
       <!-- Basic builder start -->
       <v-layout row v-if="formType=== 'basic'">

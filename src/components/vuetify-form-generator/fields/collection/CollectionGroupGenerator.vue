@@ -1,39 +1,35 @@
 <template>
   <v-layout row wrap>
     <v-flex v-bind="{ [`${field.responsive ? field.responsive : 'xs12'}`]: true}">
-      <v-flex xs12 mb-2 :class="field.class" v-if="field.title">
+      <div :class="field.class" v-if="field.title">
         {{field.title}}
-      </v-flex>
+      </div>
 
-      <v-flex xs12>
-        <!-- <transition-cmp :group=true> -->
-          <v-layout row wrap v-for="(item, index) in model[name]" :key="index">
-            <v-flex xs10 :class="field.classTitleFields">
-              {{field.titleFields}} {{index+1}}
-            </v-flex>
-            <v-flex xs2 @click="removeCollectionGroup(index)" class="error--text text-xs-right" style="float:right;cursor:pointer"
-              v-if="index != 0 && field.required === true || !field.required"
-            >
-              Remove
-            </v-flex>
+      <!-- <transition-cmp :group=true> -->
+        <v-layout row wrap v-for="(item, index) in model[name]" :key="index">
+          <v-flex pl-3 xs10 :class="field.classTitleFields">
+            {{field.titleFields}} {{index+1}}
+          </v-flex>
+          <v-flex xs2 @click="removeCollectionGroup(index)" class="error--text text-xs-right" style="float:right;cursor:pointer"
+            v-if="index != 0 && field.required === true || !field.required"
+          >
+            Remove
+          </v-flex>
 
-            <v-flex xs12>
-              <field-generator
-                :model="model[name][index]"
-                :schema="field.fields"
-                :errors="errors"
-                :veeIndex="collectionGroupVeeIndex(index)"
-              />
-            </v-flex>
-          </v-layout>
-        <!-- </transition-cmp> -->
-      </v-flex>
+          <v-flex xs12 pl-3>
+            <field-generator
+              :model="model[name][index]"
+              :schema="field.fields"
+              :errors="errors"
+              :veeIndex="collectionGroupVeeIndex(index)"
+            />
+          </v-flex>
+        </v-layout>
+      <!-- </transition-cmp> -->
 
-      <v-flex xs12>
-        <v-btn color="info" @click="addCollectionGroup">
-          Add {{field.titleFields}}
-        </v-btn>
-      </v-flex>
+      <v-btn color="info" @click="addCollectionGroup">
+        Add {{field.titleFields}}
+      </v-btn>
     </v-flex>
   </v-layout>
 </template>

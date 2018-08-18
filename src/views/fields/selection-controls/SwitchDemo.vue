@@ -18,7 +18,7 @@ export default {
   data () {
     return {
       model: new FormModel({
-        example: false
+        example: null
       }),
       schema: {
         fields: {
