@@ -8,6 +8,11 @@
           <field-generator :model="model" :schema="schema.fields" :errors="model.errors"/>
           <slot name="extra-slot"></slot>
         </v-flex>
+
+        <v-flex v-bind="{ [`${'xs12'}`]: true }">
+          <v-btn @click="submit" :loading="loading">submit</v-btn>
+          <v-btn v-if="schema.reset" @click="clear">clear</v-btn>
+        </v-flex>
       </v-layout>
       <!-- Basic builder end -->
 
@@ -15,23 +20,24 @@
       <v-layout row wrap v-else-if="formType=== 'card'">
         <v-flex v-bind="{ [`${card.responsive ? card.responsive : 'xs12'}`]: true }" v-for="(card, i) in schema.cards" :key="i">
           <v-card :class="card.class" v-bind="{ [`${card.theme}`]: true }">
-            <v-card-title :class="card.title.class" v-if="card.title">
-              {{card.title.title}}
-            </v-card-title>
+            <v-toolbar color="primary" :class="card.title.class" v-if="card.title">
+                <v-toolbar-title>{{card.title.title}}</v-toolbar-title>
+                <v-spacer></v-spacer>
+              </v-toolbar>
             <v-card-text>
               <slot :name="card.slot" v-if="card.slot"></slot>
               <field-generator :model="model" :schema="card.fields" :errors="model.errors"/>
               <slot name="extra-slot"></slot>
             </v-card-text>
+            <v-card-actions v-if="i === schema.cards.length-1">
+              <v-spacer></v-spacer>
+              <v-btn color="success" @click="submit" :loading="loading">submit</v-btn>
+              <v-btn color="warning" v-if="schema.reset" @click="clear">clear</v-btn>
+            </v-card-actions>
           </v-card>
         </v-flex>
       </v-layout>
       <!-- Card builder end -->
-
-      <v-flex v-bind="{ [`${'xs12'}`]: true }">
-        <v-btn @click="submit" :loading="loading">submit</v-btn>
-        <v-btn v-if="schema.reset" @click="clear">clear</v-btn>
-      </v-flex>
 
     </v-container>
   </v-form>
