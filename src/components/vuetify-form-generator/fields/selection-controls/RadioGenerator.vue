@@ -10,6 +10,7 @@
     :readonly="field.readonly"
     :ripple="field.ripple"
     :value="field.value"
+    @keydown="model.errors.clear($event.target.name)"
   />
 </template>
 

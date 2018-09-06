@@ -1,5 +1,5 @@
 <template>
-  <v-form @keydown="model.errors.clear($event.target.name)">
+  <v-form>
     <v-container fluid grid-list-lg>
 
       <!-- Basic builder start -->
@@ -44,6 +44,7 @@ export default {
     validator: 'new'
   },
   props: {
+    item: Object,
     model: Object,
     schema: Object,
     loading: Boolean
@@ -67,7 +68,15 @@ export default {
     },
     clear () {
       this.model.reset()
+      this.model.errors.clear()
       this.$validator.reset()
+    }
+  },
+  watch: {
+    item () {
+      if (this.item != null) {
+        Object.assign(this.model, this.item)
+      }
     }
   }
 }

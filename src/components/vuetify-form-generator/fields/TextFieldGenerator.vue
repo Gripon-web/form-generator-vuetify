@@ -58,6 +58,7 @@
     @input="$validator.validate(validatorIndex, model[name])"
     @change="$validator.validate(validatorIndex, model[name])"
     @blur="$validator.validate(validatorIndex, model[name])"
+    @keydown="model.errors.clear($event.target.name)"
   />
 </template>
 

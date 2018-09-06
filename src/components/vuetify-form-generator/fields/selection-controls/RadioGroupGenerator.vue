@@ -38,6 +38,7 @@
     @input="$validator.validate(validatorIndex, model[name])"
     @change="$validator.validate(validatorIndex, model[name])"
     @blur="$validator.validate(validatorIndex, model[name])"
+    @keydown="model.errors.clear($event.target.name)"
   >
     <radio-generator v-for="(item, i) in field.items" :key="i" :field="item"/>
   </v-radio-group>

@@ -57,13 +57,13 @@ export default {
   data () {
     return {
       drawers: [
-        {
-          title: 'Getting Started',
-          active: true,
-          childs: [
-            {title: 'installation', router: 'Installation'}
-          ]
-        },
+        // {
+        //   title: 'Getting Started',
+        //   active: true,
+        //   childs: [
+        //     {title: 'installation', router: 'Installation'}
+        //   ]
+        // },
         {
           title: 'fields',
           childs: [

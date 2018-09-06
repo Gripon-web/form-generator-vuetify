@@ -15,6 +15,7 @@
             @blur="$validator.validate(validatorIndex, model[name])"
             :data-vv-name="validatorIndex" v-validate="field.validate"
             :data-vv-as="field.label"
+            @keydown="model.errors.clear($event.target.name)"
           >
         </v-card-actions>
         <v-card-title primary-title style="padding-top:0">
