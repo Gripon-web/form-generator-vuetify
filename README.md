@@ -1,4 +1,4 @@
-# vuetify-form-generator
+# form-generator-vuetify
 
 A schema-based form generator component for Vuetify
 
