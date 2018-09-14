@@ -8,7 +8,7 @@ import VeeValidate from 'vee-validate'
 
 export const FormModel = Model
 
-const VuetifyFormGenerator = {
+const FormGeneratorVuetify = {
   install(Vue, options) {
     Vue.component('field-generator', FieldGenerator, {
       name: 'field-generator'
@@ -25,4 +25,4 @@ const VuetifyFormGenerator = {
   }
 }
 
-export default VuetifyFormGenerator
+export default FormGeneratorVuetify
