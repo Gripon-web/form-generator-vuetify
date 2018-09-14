@@ -10,18 +10,20 @@
     "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
+    "moment": "^2.22.2",
+    "vee-validate": "^2.1.0-beta.7"
+  },
+  "peerDependencies": {
+    "vue": "^2.5.17",
+    "vuetify": "^1.0.19"
+  },
+  "devDependencies": {
+    "vue-router": "^3.0.1",
+    "graphql": "^14.0.2",
     "apollo-cache-inmemory": "^1.2.10",
     "apollo-client": "^2.4.2",
     "apollo-link": "^1.2.2",
     "apollo-link-http": "^1.5.4",
-    "graphql": "^14.0.2",
-    "moment": "^2.22.2",
-    "vee-validate": "^2.1.0-beta.7",
-    "vue": "^2.5.17",
-    "vue-router": "^3.0.1",
-    "vuetify": "^1.0.19"
-  },
-  "devDependencies": {
     "@babel/polyfill": "^7.0.0-beta.49",
     "@vue/cli-plugin-babel": "^3.0.0",
     "@vue/cli-plugin-e2e-cypress": "^3.0.0",
