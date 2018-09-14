@@ -38,11 +38,6 @@
         </v-flex>
       </v-layout>
       <!-- Card builder end -->
-
-      <pre>
-        {{model}}
-      </pre>
-
     </v-container>
   </v-form>
 </template>
