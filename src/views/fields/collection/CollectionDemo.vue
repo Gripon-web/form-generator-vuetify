@@ -19,8 +19,8 @@ export default {
     return {
       model: new FormModel({
         collection: {
-          collectionFieldOne: '',
-          collectionFieldTwo: ''
+          collectionFieldOne: 'aaa',
+          collectionFieldTwo: 'aaa'
         }
       }),
       schema: {

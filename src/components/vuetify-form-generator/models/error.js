@@ -47,6 +47,11 @@ export class FormErrors {
    * @param {object} errors
    */
   record (errors) {
+    let recordErrors = {}
+    for (let error of errors) {
+      const { field, message } = error
+      recordErrors[field] = message
+    }
     this.errors = errors
   }
 }

@@ -1,5 +1,6 @@
-import { Api } from '@/api.config'
+import { graphqlFormClient } from '@/plugins/formGenerator'
 import { FormErrors } from './error'
+
 export class FormModel {
   /**
    * Create a new Form instance.
@@ -29,18 +30,37 @@ export class FormModel {
   }
 
   /**
+   * Reset the form fields.
+   */
+  reset () {
+    for (let field in this.originalData) {
+      this[field] = this.originalData[field]
+    }
+  }
+
+  /**
    * Submit the form.
    *
    * @param {string} requestType
    * @param {string} url
    */
-  async submit (apiData) {
+  async submit (query, variables) {
     return new Promise((resolve, reject) => {
-      Api(apiData)
+      graphqlFormClient.mutate({
+        mutation: query,
+        variables: variables
+      })
         .then(response => {
-          this.onSuccess(response)
-
-          resolve(response)
+          const dataKey = Object.keys(response.data)
+          const data = response.data[dataKey]
+          const { errors } = data
+          if (errors) {
+            this.onFail(errors)
+            reject(errors)
+          } else {
+            this.onSuccess()
+            resolve(data)
+          }
         })
         .catch(errors => {
           this.onFail(errors)
@@ -49,13 +69,26 @@ export class FormModel {
         })
     })
   }
+  // async submit(apiData) {
+  //   return new Promise((resolve, reject) => {
+  //     Api(apiData)
+  //       .then(response => {
+  //         this.onSuccess(response)
+
+  //         resolve(response)
+  //       })
+  //       .catch(errors => {
+  //         this.onFail(errors)
+
+  //         reject(errors)
+  //       })
+  //   })
+  // }
 
   /**
    * Handle a successful form submission.
-   *
-   * @param {object} data
    */
-  onSuccess (data) {
+  onSuccess () {
     this.errors.clear()
   }
   /**

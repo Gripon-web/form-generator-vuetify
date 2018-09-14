@@ -1,5 +1,8 @@
 import '@babel/polyfill'
 import Vue from 'vue'
+
+import './plugins/formGenerator'
+import './plugins/graphql'
 import './plugins/veeValidate'
 import './plugins/vuetify'
 import App from './App.vue'

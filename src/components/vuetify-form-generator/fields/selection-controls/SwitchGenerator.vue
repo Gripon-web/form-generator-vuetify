@@ -41,7 +41,7 @@
     @input="updateValue($event)"
     @change="updateValue($event)"
     @blur="$validator.validate(validatorIndex, model[name])"
-    @keydown="model.errors.clear($event.target.name)"
+    @keydown="errors.clear($event.target.name)"
   />
 </template>
 
@@ -75,6 +75,7 @@ export default {
         if (this.isActivator) {
           this.field['state'] = val
         } else {
+          console.log(val)
           this.model[this.name] = val
         }
       }

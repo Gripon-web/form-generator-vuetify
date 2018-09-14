@@ -3,15 +3,15 @@
     <v-container fluid grid-list-lg>
 
       <!-- Basic builder start -->
-      <v-layout row v-if="formType=== 'basic'">
+      <v-layout row wrap v-if="formType=== 'basic'">
         <v-flex v-bind="{ [`${schema.responsive ? schema.responsive : 'xs12' }`]: true }">
           <field-generator :model="model" :schema="schema.fields" :errors="model.errors"/>
           <slot name="extra-slot"></slot>
         </v-flex>
 
         <v-flex v-bind="{ [`${'xs12'}`]: true }">
-          <v-btn @click="submit" :loading="loading">submit</v-btn>
-          <v-btn v-if="schema.reset" @click="clear">clear</v-btn>
+          <btn-reset v-if="schema.reset" :loading="loading" :model="model" color="warning"/>
+          <btn-submit :loading="loading" :model="model" color="success" @btn-submit="submit"/>
         </v-flex>
       </v-layout>
       <!-- Basic builder end -->
@@ -20,10 +20,10 @@
       <v-layout row wrap v-else-if="formType=== 'card'">
         <v-flex v-bind="{ [`${card.responsive ? card.responsive : 'xs12'}`]: true }" v-for="(card, i) in schema.cards" :key="i">
           <v-card :class="card.class" v-bind="{ [`${card.theme}`]: true }">
-            <v-toolbar color="primary" :class="card.title.class" v-if="card.title">
-                <v-toolbar-title>{{card.title.title}}</v-toolbar-title>
-                <v-spacer></v-spacer>
-              </v-toolbar>
+            <v-toolbar class="primary" dark v-if="card.title">
+              <v-toolbar-title>{{card.title.title}}</v-toolbar-title>
+              <v-spacer></v-spacer>
+            </v-toolbar>
             <v-card-text>
               <slot :name="card.slot" v-if="card.slot"></slot>
               <field-generator :model="model" :schema="card.fields" :errors="model.errors"/>
@@ -31,21 +31,28 @@
             </v-card-text>
             <v-card-actions v-if="i === schema.cards.length-1">
               <v-spacer></v-spacer>
-              <v-btn color="success" @click="submit" :loading="loading">submit</v-btn>
-              <v-btn color="warning" v-if="schema.reset" @click="clear">clear</v-btn>
+              <btn-reset v-if="schema.reset" :loading="loading" :model="model" color="warning"/>
+              <btn-submit :loading="loading" :model="model" color="success" @btn-submit="submit"/>
             </v-card-actions>
           </v-card>
         </v-flex>
       </v-layout>
       <!-- Card builder end -->
 
+      <pre>
+        {{model}}
+      </pre>
+
     </v-container>
   </v-form>
 </template>
 
 <script>
+import BtnSubmit from './buttons/BtnSubmit'
+import BtnReset from './buttons/BtnReset'
 export default {
   name: 'FormGenerator',
+  components: { BtnSubmit, BtnReset },
   $_veeValidate: {
     validator: 'new'
   },
@@ -65,17 +72,7 @@ export default {
   },
   methods: {
     submit () {
-      this.$validator.validateAll()
-        .then((result) => {
-          if (result) {
-            this.$emit('on-submit', this.model)
-          }
-        })
-    },
-    clear () {
-      this.model.reset()
-      this.model.errors.clear()
-      this.$validator.reset()
+      this.$emit('on-submit', this.model.data())
     }
   },
   watch: {

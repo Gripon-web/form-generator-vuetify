@@ -3,7 +3,7 @@
     <switch-generator
       :name="name" :model="optional" :field="field.activator" isActivator
     ></switch-generator>
-
+{{optional}}
     <!-- <transition-cmp> -->
       <field-generator v-if="optional"
         :schema="field.fields"
