@@ -1,5 +1,5 @@
 <template>
-  <v-btn :color="color" @click="submit" :loading="loading">submit</v-btn>
+  <v-btn :color="color" @click="submit" :loading="loading">{{submitValue}}</v-btn>
 </template>
 
 <script>
@@ -8,8 +8,15 @@ export default {
   inject: ['$validator'],
   props: {
     loading: Boolean,
-    model: Object,
-    color: String
+    color: String,
+    schema: String
+  },
+  computed: {
+    submitValue () {
+      const { buttons: { submit: { text } } } = this.schema
+      // eslint-disable-next-line
+      return text ? text : 'Submit'
+    }
   },
   methods: {
     submit () {

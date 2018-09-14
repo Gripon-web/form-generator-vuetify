@@ -4,8 +4,6 @@ import {
   FormModel as Model
 } from './components/vuetify-form-generator'
 
-import VeeValidate from 'vee-validate'
-
 export const FormModel = Model
 
 const FormGeneratorVuetify = {
@@ -15,12 +13,6 @@ const FormGeneratorVuetify = {
     })
     Vue.component('form-generator', FormGenerator, {
       name: 'form-generator'
-    })
-
-    Vue.use(VeeValidate, {
-      events: 'blur',
-      inject: false,
-      errorBagName: 'veeErrors'
     })
   }
 }

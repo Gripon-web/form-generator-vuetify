@@ -9,12 +9,20 @@ export default {
   props: {
     loading: Boolean,
     model: Object,
+    schema: Object,
     color: String
+  },
+  computed: {
+    resetValue () {
+      const { buttons: { reset: { text } } } = this.schema
+      // eslint-disable-next-line
+      return text ? text : 'Clear'
+    }
   },
   methods: {
     clear () {
       this.model.reset()
-      this.errors.clear()
+      this.model.errors.clear()
       this.$validator.reset()
     }
   }

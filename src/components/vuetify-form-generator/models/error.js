@@ -52,6 +52,6 @@ export class FormErrors {
       const { field, message } = error
       recordErrors[field] = message
     }
-    this.errors = errors
+    this.errors = recordErrors
   }
 }

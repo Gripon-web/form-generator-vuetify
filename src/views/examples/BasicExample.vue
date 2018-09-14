@@ -52,7 +52,12 @@ export default {
           },
           agree: { type: 'checkbox', label: 'Do you agree ?', validate: 'required' }
         },
-        reset: true
+        buttons: {
+          reset: true,
+          submit: {
+            text: 'Submit'
+          }
+        }
       }
     }
   },
