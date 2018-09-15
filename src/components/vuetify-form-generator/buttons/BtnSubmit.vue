@@ -9,13 +9,15 @@ export default {
   props: {
     loading: Boolean,
     color: String,
-    schema: String
+    schema: Object
   },
   computed: {
     submitValue () {
-      const { buttons: { submit: { text } } } = this.schema
-      // eslint-disable-next-line
-      return text ? text : 'Submit'
+      if (this.schema && this.schema.buttons.submit) {
+        const { text } = this.schema.buttons.submit
+        return text
+      }
+      return 'Submit'
     }
   },
   methods: {

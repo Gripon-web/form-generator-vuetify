@@ -10,7 +10,7 @@
         </v-flex>
 
         <v-flex v-bind="{ [`${'xs12'}`]: true }">
-          <btn-reset v-if="schema.buttons && schema.buttons.reset" :schema="schema" :loading="loading" color="warning"/>
+          <btn-reset v-if="schema.buttons && schema.buttons.reset" :model="model" :schema="schema" :loading="loading" color="warning"/>
           <btn-submit
             :loading="loading"
             :schema="schema"
@@ -36,7 +36,7 @@
             </v-card-text>
             <v-card-actions v-if="i === schema.cards.length-1">
               <v-spacer></v-spacer>
-              <btn-reset v-if="schema.buttons && schema.buttons.reset" :schema="schema" :loading="loading" color="warning"/>
+              <btn-reset v-if="schema.buttons && schema.buttons.reset" :model="model" :schema="schema" :loading="loading" color="warning"/>
               <btn-submit
                 :loading="loading"
                 :schema="schema"
