@@ -1,4 +1,4 @@
-import { graphqlFormClient } from '@/plugins/formGenerator'
+import { graphqlFormClient } from '@/plugins/formGeneratorVuetify'
 import { FormErrors } from './error'
 
 export class FormModel {
