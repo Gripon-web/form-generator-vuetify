@@ -70,7 +70,10 @@ import { fieldsMixin, propsMixin } from '../../mixins'
 export default {
   name: 'MenuDatePickerGenerator',
   mixins: [fieldsMixin, propsMixin],
-  components: {DatePickerGenerator, TextFieldGenerator},
+  components: {
+    DatePickerGenerator,
+    TextFieldGenerator
+  },
   data () {
     return {
       menu: false

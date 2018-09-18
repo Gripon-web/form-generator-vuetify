@@ -32,8 +32,8 @@ export default {
             title: 'Collection group demo',
             titleFields: 'Group',
             fields: {
-              collectionGroupFieldOne: {type: 'text-field', label: 'field One', validate: 'required'},
-              collectionGroupFieldTwo: {type: 'text-field', label: 'field Two', validate: 'required'}
+              collectionGroupFieldOne: { type: 'text-field', label: 'field One', validate: 'required' },
+              collectionGroupFieldTwo: { type: 'text-field', label: 'field Two', validate: 'required' }
             }
           }
         },

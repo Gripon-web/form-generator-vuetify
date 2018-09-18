@@ -1,54 +1,51 @@
 <template>
   <v-form>
-    <v-container fluid grid-list-lg>
+    <!-- Basic builder start -->
+    <v-layout row wrap v-if="formType=== 'basic'">
+      <v-flex v-bind="{ [`${schema.responsive ? schema.responsive : 'xs12' }`]: true }">
+        <field-generator :model="model" :schema="schema.fields" :errors="model.errors"/>
+        <slot name="extra-slot"></slot>
+      </v-flex>
 
-      <!-- Basic builder start -->
-      <v-layout row wrap v-if="formType=== 'basic'">
-        <v-flex v-bind="{ [`${schema.responsive ? schema.responsive : 'xs12' }`]: true }">
-          <field-generator :model="model" :schema="schema.fields" :errors="model.errors"/>
-          <slot name="extra-slot"></slot>
-        </v-flex>
+      <v-flex v-bind="{ [`${'xs12'}`]: true }">
+        <btn-reset v-if="schema.buttons && schema.buttons.reset" :model="model" :schema="schema" :loading="loading" color="warning"/>
+        <btn-submit
+          :loading="loading"
+          :schema="schema"
+          color="success"
+          @btn-submit="submit"
+        />
+      </v-flex>
+    </v-layout>
+    <!-- Basic builder end -->
 
-        <v-flex v-bind="{ [`${'xs12'}`]: true }">
-          <btn-reset v-if="schema.buttons && schema.buttons.reset" :model="model" :schema="schema" :loading="loading" color="warning"/>
-          <btn-submit
-            :loading="loading"
-            :schema="schema"
-            color="success"
-            @btn-submit="submit"
-          />
-        </v-flex>
-      </v-layout>
-      <!-- Basic builder end -->
-
-      <!-- Card builder start -->
-      <v-layout row wrap v-else-if="formType=== 'card'">
-        <v-flex v-bind="{ [`${card.responsive ? card.responsive : 'xs12'}`]: true }" v-for="(card, i) in schema.cards" :key="i">
-          <v-card :class="card.class" v-bind="{ [`${card.theme}`]: true }">
-            <v-toolbar class="primary" dark v-if="card.title">
-              <v-toolbar-title>{{card.title.title}}</v-toolbar-title>
-              <v-spacer></v-spacer>
-            </v-toolbar>
-            <v-card-text>
-              <slot :name="card.slot" v-if="card.slot"></slot>
-              <field-generator :model="model" :schema="card.fields" :errors="model.errors"/>
-              <slot name="extra-slot"></slot>
-            </v-card-text>
-            <v-card-actions v-if="i === schema.cards.length-1">
-              <v-spacer></v-spacer>
-              <btn-reset v-if="schema.buttons && schema.buttons.reset" :model="model" :schema="schema" :loading="loading" color="warning"/>
-              <btn-submit
-                :loading="loading"
-                :schema="schema"
-                color="success"
-                @btn-submit="submit"
-              />
-            </v-card-actions>
-          </v-card>
-        </v-flex>
-      </v-layout>
-      <!-- Card builder end -->
-    </v-container>
+    <!-- Card builder start -->
+    <v-layout row wrap v-else-if="formType=== 'card'">
+      <v-flex v-bind="{ [`${card.responsive ? card.responsive : 'xs12'}`]: true }" v-for="(card, i) in schema.cards" :key="i">
+        <v-card :class="card.class" v-bind="{ [`${card.theme}`]: true }">
+          <v-toolbar class="primary" dark v-if="card.title">
+            <v-toolbar-title>{{card.title.title}}</v-toolbar-title>
+            <v-spacer></v-spacer>
+          </v-toolbar>
+          <v-card-text>
+            <slot :name="card.slot" v-if="card.slot"></slot>
+            <field-generator :model="model" :schema="card.fields" :errors="model.errors"/>
+            <slot name="extra-slot"></slot>
+          </v-card-text>
+          <v-card-actions v-if="i === schema.cards.length-1">
+            <v-spacer></v-spacer>
+            <btn-reset v-if="schema.buttons && schema.buttons.reset" :model="model" :schema="schema" :loading="loading" color="warning"/>
+            <btn-submit
+              :loading="loading"
+              :schema="schema"
+              color="success"
+              @btn-submit="submit"
+            />
+          </v-card-actions>
+        </v-card>
+      </v-flex>
+    </v-layout>
+    <!-- Card builder end -->
   </v-form>
 </template>
 
@@ -80,11 +77,16 @@ export default {
       this.$emit('on-submit', this.model.data())
     }
   },
-  watch: {
-    item () {
-      if (this.item != null) {
-        Object.assign(this.model, this.item)
-      }
+  // watch: {
+  //   item () {
+  //     if (this.item != null) {
+  //       Object.assign(this.model, this.item)
+  //     }
+  //   }
+  // }
+  created () {
+    if (this.item != null) {
+      Object.assign(this.model, this.item)
     }
   }
 }

@@ -29,8 +29,8 @@ export default {
             type: 'collection',
             title: 'Collection demo',
             fields: {
-              collectionFieldOne: {type: 'text-field', label: 'field One', validate: 'required'},
-              collectionFieldTwo: {type: 'text-field', label: 'field Two', validate: 'required'}
+              collectionFieldOne: { type: 'text-field', label: 'field One', validate: 'required' },
+              collectionFieldTwo: { type: 'text-field', label: 'field Two', validate: 'required' }
             }
           }
         },

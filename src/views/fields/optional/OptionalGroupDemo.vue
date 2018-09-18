@@ -32,8 +32,8 @@ export default {
               label: 'Has optional group'
             },
             fields: {
-              fieldOne: {type: 'text-field', label: 'fieldOne optional', validate: 'required'},
-              fieldTwo: {type: 'text-field', label: 'fieldTwo optional', validate: 'required'}
+              fieldOne: { type: 'text-field', label: 'fieldOne optional', validate: 'required' },
+              fieldTwo: { type: 'text-field', label: 'fieldTwo optional', validate: 'required' }
             }
           }
         },

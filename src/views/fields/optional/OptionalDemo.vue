@@ -29,7 +29,7 @@ export default {
               label: 'Has options'
             },
             fields: {
-              optional: {type: 'text-field', label: 'Is optional', validate: 'required'}
+              optional: { type: 'text-field', label: 'Is optional', validate: 'required' }
             }
           }
         },

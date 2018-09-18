@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container fluid grid-list-lg>
     <v-layout row wrap align-center>
       <v-flex xs12>
         <form-generator :model="model" :schema="schema" @on-submit="onSubmit"/>
@@ -60,7 +60,8 @@ export default {
                 errorName: 'email',
                 inputType: 'email'
               },
-              password: {type: 'text-field',
+              password: {
+                type: 'text-field',
                 label: 'Password',
                 responsive: 'xs6',
                 validate: 'required|min:6',
@@ -69,7 +70,8 @@ export default {
                 hint: 'minimum 6 characters',
                 persistentHint: true
               },
-              confirmPassword: {type: 'text-field',
+              confirmPassword: {
+                type: 'text-field',
                 label: 'Confirm Password',
                 responsive: 'xs6',
                 validate: `required|min:6|confirmed:${this.model.password}`,

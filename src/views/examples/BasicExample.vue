@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container fluid grid-list-lg>
     <v-layout row wrap align-center>
       <v-flex xs12>
         <form-generator :model="model" :schema="schema" @on-submit="onSubmit"/>
@@ -35,19 +35,46 @@ export default {
     schema () {
       return {
         fields: {
-          username: {type: 'text-field', label: 'Username', validate: 'required', errorName: 'username'},
-          email: {type: 'text-field', label: 'Email', validate: 'required|email', errorName: 'email', inputType: 'email'},
-          password: {type: 'text-field', label: 'Password', validate: 'required|min:6', errorName: 'password', inputType: 'password', hint: 'minimum 6 characters', persistentHint: true},
-          confirmPassword: {type: 'text-field', label: 'Confirm Password', validate: `required|min:6|confirmed:${this.model.password}`, errorName: 'password', inputType: 'password', hint: 'minimum 6 characters', persistentHint: true},
+          username: {
+            type: 'text-field',
+            label: 'Username',
+            validate: 'required',
+            errorName: 'username'
+          },
+          email: {
+            type: 'text-field',
+            label: 'Email',
+            validate: 'required|email',
+            errorName: 'email',
+            inputType: 'email'
+          },
+          password: {
+            type: 'text-field',
+            label: 'Password',
+            validate: 'required|min:6',
+            errorName: 'password',
+            inputType: 'password',
+            hint: 'minimum 6 characters',
+            persistentHint: true
+          },
+          confirmPassword: {
+            type: 'text-field',
+            label: 'Confirm Password',
+            validate: `required|min:6|confirmed:${this.model.password}`,
+            errorName: 'password',
+            inputType: 'password',
+            hint: 'minimum 6 characters',
+            persistentHint: true
+          },
           addresses: {
             type: 'collection-group',
             required: true,
             title: 'Addresses',
             titleFields: 'Address',
             fields: {
-              streetAddress: {type: 'text-field', label: 'Street adress', validate: 'required'},
-              state: {type: 'text-field', label: 'State/Province/Region', validate: 'required'},
-              city: {type: 'text-field', label: 'City', validate: 'required'}
+              streetAddress: { type: 'text-field', label: 'Street adress', validate: 'required' },
+              state: { type: 'text-field', label: 'State/Province/Region', validate: 'required' },
+              city: { type: 'text-field', label: 'City', validate: 'required' }
             }
           },
           agree: { type: 'checkbox', label: 'Do you agree ?', validate: 'required' }

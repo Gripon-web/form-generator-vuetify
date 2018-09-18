@@ -1,7 +1,7 @@
 import '@babel/polyfill'
 import Vue from 'vue'
 
-import './plugins/formGenerator'
+import './plugins/formGeneratorVuetify'
 import './plugins/graphql'
 import './plugins/veeValidate'
 import './plugins/vuetify'
