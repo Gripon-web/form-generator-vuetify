@@ -1,6 +1,6 @@
 {
   "name": "form-generator-vuetify",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name vuetifyFormGenerator ./src/components/vuetify-form-generator/index.js",

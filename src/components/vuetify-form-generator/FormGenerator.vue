@@ -77,16 +77,11 @@ export default {
       this.$emit('on-submit', this.model.data())
     }
   },
-  // watch: {
-  //   item () {
-  //     if (this.item != null) {
-  //       Object.assign(this.model, this.item)
-  //     }
-  //   }
-  // }
-  created () {
-    if (this.item != null) {
-      Object.assign(this.model, this.item)
+  watch: {
+    item () {
+      if (this.item != null) {
+        Object.assign(this.model, this.item)
+      }
     }
   }
 }
