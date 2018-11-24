@@ -83,6 +83,11 @@ export default {
         Object.assign(this.model, this.item)
       }
     }
+  },
+  created () {
+    if (this.item != null) {
+      Object.assign(this.model, this.item)
+    }
   }
 }
 </script>
